@@ -1,6 +1,5 @@
 package ru.ars.ncedu;
 
-
 class ArraysSortChecker {
 
     private ArraysSortChecker() {
