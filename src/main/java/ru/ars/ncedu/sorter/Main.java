@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] array = GenerationArrayInteger.arrayGeneration(6);
-        Integer[] arr = {3, 2, 23};
+        Integer[] array = GenerationArrayInteger.arrayGeneration(1);
+        Integer[] arr = {3, 2, 3, 2};
 
         System.out.println(ArraysSortChecker.isSort(arr));
 

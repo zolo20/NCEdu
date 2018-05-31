@@ -10,17 +10,23 @@ class ArraysSortChecker {
             return false;
         }
 
+        if (array.length == 1 || array.length == 2) {
+            return true;
+        }
+
         for (int i = 1; i < array.length - 1; i++) {
             if (array[0].compareTo(array[1]) <= 0) {
                 if (array[i].compareTo(array[i + 1]) <= 0 && i == array.length - 2) {
                     return true;
+                } else {
+                    break;
                 }
             } else if (array[0].compareTo(array[1]) >= 0) {
                 if (array[i].compareTo(array[i + 1]) >= 0 && i == array.length - 2) {
                     return true;
+                } else {
+                    break;
                 }
-            } else {
-                break;
             }
         }
         return false;
