@@ -11,7 +11,6 @@ public class QuickSortTest {
     @Test
     public void sortTest() {
         Integer[] array = GenerationArrayInteger.arrayGeneration(new Random().nextInt(10));
-        System.out.println(Arrays.toString(array));
         QuickSort.sort(array);
         if (array.length > 0) {
             Assert.assertTrue(ArraysSortChecker.isSort(array));
@@ -23,7 +22,6 @@ public class QuickSortTest {
     @Test
     public void sortComparatorTest() {
         Integer[] array = GenerationArrayInteger.arrayGeneration(new Random().nextInt(10));
-        System.out.println(Arrays.toString(array));
         QuickSort.sort(array, (o1, o2) -> Integer.compare(o2.compareTo(o1), 0));
         if (array.length > 0) {
             Assert.assertTrue(ArraysSortChecker.isSort(array));
