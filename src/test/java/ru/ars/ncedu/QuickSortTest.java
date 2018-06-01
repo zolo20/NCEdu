@@ -1,5 +1,4 @@
-package ru.ars.ncedu.sorter;
-
+package ru.ars.ncedu;
 
 import org.junit.Assert;
 import org.junit.Test;

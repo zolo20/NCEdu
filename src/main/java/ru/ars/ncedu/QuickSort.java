@@ -1,4 +1,4 @@
-package ru.ars.ncedu.sorter;
+package ru.ars.ncedu;
 
 import java.util.Comparator;
 
