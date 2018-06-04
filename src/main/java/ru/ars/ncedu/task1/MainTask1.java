@@ -1,8 +1,8 @@
-package ru.ars.ncedu;
+package ru.ars.ncedu.task1;
 
 import java.util.Arrays;
 
-public class Main {
+public class MainTask1 {
     public static void main(String[] args) {
         Integer[] array = GenerationArrayInteger.arrayGeneration(7);
         Integer[] arr = {3, 2, 3, 2};

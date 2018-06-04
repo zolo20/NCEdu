@@ -1,9 +1,11 @@
-package ru.ars.ncedu;
+package ru.ars.ncedu.task1;
 
 import org.junit.Assert;
 import org.junit.Test;
+import ru.ars.ncedu.task1.ArraysSortChecker;
+import ru.ars.ncedu.task1.GenerationArrayInteger;
+import ru.ars.ncedu.task1.QuickSort;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class QuickSortTest {
