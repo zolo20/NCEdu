@@ -58,7 +58,7 @@ public class FilesDirectoryTest {
     }
 
     @Test
-    public void getNameFileDirectoryTest(){
+    public void getNameFileDirectoryTest() {
         String[] nameFiles = new File(pathResourceSource).list();
         int count = 0;
         for (String nameFile : requireNonNull(nameFiles)) {
@@ -73,10 +73,10 @@ public class FilesDirectoryTest {
     public void copyTestNullPointerException() {
         try {
             FilesDirectory.copy(null, pathResourceTarget);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             try {
                 FilesDirectory.copy(pathResourceSource, null);
-            }catch (NullPointerException e1) {
+            } catch (NullPointerException e1) {
                 FilesDirectory.copy(null, null);
             }
         }
@@ -86,10 +86,10 @@ public class FilesDirectoryTest {
     public void moveTestNullPointerException() {
         try {
             FilesDirectory.move(null, pathResourceTarget);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             try {
                 FilesDirectory.move(pathResourceSource, null);
-            }catch (NullPointerException e1) {
+            } catch (NullPointerException e1) {
                 FilesDirectory.move(null, null);
             }
         }
@@ -99,10 +99,10 @@ public class FilesDirectoryTest {
     public void getNameFileDirectoryTestNullPointerException() {
         try {
             FilesDirectory.getNameFileDirectory(null, regex);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             try {
                 FilesDirectory.getNameFileDirectory(pathResourceSource, null);
-            }catch (NullPointerException e1) {
+            } catch (NullPointerException e1) {
                 FilesDirectory.getNameFileDirectory(null, null);
             }
         }
@@ -112,10 +112,10 @@ public class FilesDirectoryTest {
     public void copyTestIllegalArgumentException() {
         try {
             FilesDirectory.copy(pathResourceSource + File.separator + "12", pathResourceTarget);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             try {
                 FilesDirectory.copy(pathResourceSource, pathResourceTarget + File.separator + "12");
-            }catch (IllegalArgumentException e1) {
+            } catch (IllegalArgumentException e1) {
                 FilesDirectory.copy(pathResourceSource + File.separator + "12",
                         pathResourceTarget + File.separator + "12");
             }
@@ -126,10 +126,10 @@ public class FilesDirectoryTest {
     public void moveTestIllegalArgumentException() {
         try {
             FilesDirectory.move(pathResourceSource + File.separator + "12", pathResourceTarget);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             try {
                 FilesDirectory.move(pathResourceSource, pathResourceTarget + File.separator + "12");
-            }catch (IllegalArgumentException e1) {
+            } catch (IllegalArgumentException e1) {
                 FilesDirectory.move(pathResourceSource + File.separator + "12",
                         pathResourceTarget + File.separator + "12");
             }
