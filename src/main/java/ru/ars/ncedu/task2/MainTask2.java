@@ -10,7 +10,8 @@ public class MainTask2 {
                 "2. move<from><to>" + "\n" +
                 "3. getAllNameFileDirectory<from>" + "\n" +
                 "4. getNameFileDirectory<from><regex>" + "\n" +
-                "5. exit");
+                "5. exit"
+        );
         System.out.print("Enter an function(Example: copy<C:\\Users\\123><C:\\Users\\12>): ");
         String fullNameFunction = in.nextLine().trim();
 
