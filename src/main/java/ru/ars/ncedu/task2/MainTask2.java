@@ -18,16 +18,15 @@ public class MainTask2 {
                 fullNameFunction.substring(0, fullNameFunction.indexOf("<"));
         String from = fullNameFunction.equalsIgnoreCase("exit") ? "exit" :
                 fullNameFunction.substring(fullNameFunction.indexOf("<") + 1, fullNameFunction.indexOf(">"));
-        String to;
+        String to = fullNameFunction.equalsIgnoreCase("exit") ? "exit" :
+                fullNameFunction.substring(fullNameFunction.lastIndexOf("<") + 1, fullNameFunction.lastIndexOf(">"));
 
         switch (nameFunction) {
             case "copy":
-                to = fullNameFunction.substring(fullNameFunction.lastIndexOf("<") + 1, fullNameFunction.lastIndexOf(">"));
                 FilesDirectory.copy(from, to);
                 System.out.println("Copied");
                 break;
             case "move":
-                to = fullNameFunction.substring(fullNameFunction.lastIndexOf("<") + 1, fullNameFunction.lastIndexOf(">"));
                 FilesDirectory.move(from, to);
                 System.out.println("Moved");
                 break;
