@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class MainTask2 {
     public static void main(String... args) {
         System.out.println("Choose an method:");
-        System.out.println("1. copy" + "\n" +
+        System.out.println(
+                "1. copy" + "\n" +
                 "2. copyAll" + "\n" +
                 "3. move" + "\n" +
                 "4. moveAll" + "\n" +
