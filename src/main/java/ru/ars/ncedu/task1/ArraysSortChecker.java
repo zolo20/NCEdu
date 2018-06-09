@@ -14,23 +14,14 @@ class ArraysSortChecker {
             return true;
         }
 
+        boolean arrAsc = array[0].compareTo(array[1]) <= 0;
         for (int i = 1; i < array.length - 1; i++) {
-            if (array[0].compareTo(array[1]) <= 0) {
-                if (array[i].compareTo(array[i + 1]) <= 0) {
-                    if (i == array.length - 2) {
-                        return true;
-                    }
-                } else {
-                    break;
+            if ((array[i].compareTo(array[i + 1]) <= 0) == arrAsc) {
+                if (i == array.length - 2) {
+                    return true;
                 }
-            } else if (array[0].compareTo(array[1]) >= 0) {
-                if (array[i].compareTo(array[i + 1]) >= 0) {
-                    if (i == array.length - 2) {
-                        return true;
-                    }
-                } else {
-                    break;
-                }
+            } else {
+                break;
             }
         }
         return false;
