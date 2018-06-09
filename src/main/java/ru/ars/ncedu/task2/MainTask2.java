@@ -38,7 +38,7 @@ public class MainTask2 {
         }
 
         if (hasEntered == false) {
-            System.out.println("No correct method name " + "\"" + nameMethod + "\"");
+            System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
         }
         main();
     }
@@ -52,68 +52,62 @@ public class MainTask2 {
             switch (nameMethod) {
                 case "copy":
                     System.out.print("Enter where to copy from(Example:C:\\Users\\123>):");
-                    from = in.nextLine().trim();
-                    checkerIsNotExistDirectory(from, nameMethod, method);
+                    from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     System.out.print("Enter where to copy(Example:C:\\Users\\123>):");
-                    to = in.nextLine().trim();
-                    checkerIsNotExistDirectory(to, nameMethod, method);
+                    to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     System.out.print("Enter regular expression:");
                     regex = in.nextLine().trim();
                     method.invoke(null, from, to, regex);
-                    System.out.println("copied");
+                    System.out.println("copied" + "\n");
                     break;
                 case "copyAll":
                     System.out.print("Enter where to copy from(Example:C:\\Users\\123>):");
-                    from = in.nextLine().trim();
-                    checkerIsNotExistDirectory(from, nameMethod, method);
+                    from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     System.out.print("Enter where to copy(Example:C:\\Users\\123>):");
-                    to = in.nextLine().trim();
-                    checkerIsNotExistDirectory(to, nameMethod, method);
+                    to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     method.invoke(null, from, to);
-                    System.out.println("copied");
+                    System.out.println("copied" + "\n");
                     break;
                 case "move":
                     System.out.print("Enter where to move from(Example:C:\\Users\\123>):");
-                    from = in.nextLine().trim();
-                    checkerIsNotExistDirectory(from, nameMethod, method);
+                    from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     System.out.print("Enter where to move(Example:C:\\Users\\123>):");
-                    to = in.nextLine().trim();
-                    checkerIsNotExistDirectory(to, nameMethod, method);
+                    to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     System.out.print("Enter regular expression:");
                     regex = in.nextLine().trim();
                     method.invoke(null, from, to, regex);
-                    System.out.println("moved");
+                    System.out.println("moved" + "\n");
                     break;
                 case "moveAll":
                     System.out.print("Enter where to move from(Example:C:\\Users\\123>):");
-                    from = in.nextLine().trim();
-                    checkerIsNotExistDirectory(from, nameMethod, method);
+                    from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     System.out.print("Enter where to move(Example:C:\\Users\\123>):");
-                    to = in.nextLine().trim();
-                    checkerIsNotExistDirectory(to, nameMethod, method);
+                    to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     method.invoke(null, from, to);
-                    System.out.println("moved");
+                    System.out.println("moved" + "\n");
                     break;
                 case "getNameFileDirectory":
                     System.out.print("Enter where to get name file from(Example:C:\\Users\\123>):");
-                    from = in.nextLine().trim();
-                    checkerIsNotExistDirectory(from, nameMethod, method);
+                    from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     System.out.print("Enter regular expression:");
                     regex = in.nextLine().trim();
-                    System.out.println(method.invoke(null, from, regex));
+                    System.out.println(method.invoke(null, from, regex) + "\n");
                     break;
                 case "getAllNameFileDirectory":
                     System.out.print("Enter where to get name file from(Example:C:\\Users\\123>):");
                     from = in.nextLine().trim();
                     checkerIsNotExistDirectory(from, nameMethod, method);
-                    System.out.println(method.invoke(null, from));
+                    System.out.println(method.invoke(null, from) + "\n");
                     break;
                 case "delete":
-                    System.out.print("Enter where to get name file from(Example:C:\\Users\\123>):");
+                    System.out.print("Enter path to delete(Example:C:\\Users\\123>):");
                     from = in.nextLine().trim();
                     checkerIsNotExistDirectory(from, nameMethod, method);
                     method.invoke(null, from);
-                    System.out.println("deleted");
+                    System.out.println("deleted" + "\n");
+                    break;
+                default:
+                    System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
                     break;
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
@@ -122,10 +116,12 @@ public class MainTask2 {
         return true;
     }
 
-    private static void checkerIsNotExistDirectory(String path, String nameMethod, Method method) {
-        if (Files.notExists(new File(path).toPath())) {
+    private static String checkerIsNotExistDirectory(String path, String nameMethod, Method method) {
+        if (path.equals("") || Files.notExists(new File(path).toPath())) {
             System.out.println("Specified path " + "\"" + path + "\"" + " is not exist(The existing path is expected)");
-            startMethod(nameMethod, method);
+            System.out.print("Enter an existing path:");
+            path = checkerIsNotExistDirectory(new Scanner(System.in).nextLine().trim(),nameMethod,method);
         }
+        return path;
     }
 }
