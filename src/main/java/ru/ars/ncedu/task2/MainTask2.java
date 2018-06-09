@@ -8,14 +8,13 @@ import java.util.Scanner;
 public class MainTask2 {
     public static void main(String... args) {
         System.out.println("Choose an method:");
-        System.out.println(
-                "1. copy" + "\n" +
+        System.out.println("1. copy" + "\n" +
                 "2. copyAll" + "\n" +
                 "3. move" + "\n" +
                 "4. moveAll" + "\n" +
                 "5. getAllNameFileDirectory" + "\n" +
                 "6. getNameFileDirectory" + "\n" +
-                "7. delete" + "\n" +
+                "7. deleteDirectory" + "\n" +
                 "8. exit"
         );
         System.out.print("Enter: ");
@@ -100,8 +99,8 @@ public class MainTask2 {
                     checkerIsNotExistDirectory(from, nameMethod, method);
                     System.out.println(method.invoke(null, from) + "\n");
                     break;
-                case "delete":
-                    System.out.print("Enter path to delete(Example:C:\\Users\\123>):");
+                case "deleteDirectory":
+                    System.out.print("Enter path to deleteDirectory(Example:C:\\Users\\123>):");
                     from = in.nextLine().trim();
                     checkerIsNotExistDirectory(from, nameMethod, method);
                     method.invoke(null, from);
@@ -121,7 +120,7 @@ public class MainTask2 {
         if (path.equals("") || Files.notExists(new File(path).toPath())) {
             System.out.println("Specified path " + "\"" + path + "\"" + " is not exist(The existing path is expected)");
             System.out.print("Enter an existing path:");
-            path = checkerIsNotExistDirectory(new Scanner(System.in).nextLine().trim(),nameMethod,method);
+            path = checkerIsNotExistDirectory(new Scanner(System.in).nextLine().trim(), nameMethod, method);
         }
         return path;
     }

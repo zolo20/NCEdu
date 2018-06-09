@@ -158,7 +158,7 @@ public class FilesDirectoryTest {
 
     @AfterClass
     public static void deleteFileAfterClass() throws IOException {
-        FilesDirectory.delete(pathResource + File.separator + "Tests");
+        FilesDirectory.deleteDirectory(pathResource + File.separator + "Tests");
     }
 
 

@@ -16,32 +16,25 @@ class FilesDirectory {
     /**
      * Copy content directory to a target directory.
      *
-     * @param sourcePath
-     * the path to the directory to copy content
-     * @param targetPath
-     * the path to the target directory
-     * @throws IOException
-     * if an I/O error occurs
+     * @param sourcePath the path to the directory to copy content
+     * @param targetPath the path to the target directory
+     * @throws IOException if an I/O error occurs
      */
     public static void copyAll(String sourcePath, String targetPath) throws IOException {
-        copy(sourcePath,targetPath,".*");
+        copy(sourcePath, targetPath, ".*");
     }
 
     /**
      * Copy content directory to a target directory.
      * Whether files are copied whose name matches regular expression.
      *
-     * @param sourcePath
-     * the path to the directory to copy content
-     * @param targetPath
-     * the path to the target directory
-     * @param regex
-     * the regular expression to which this file name is to be matched
-     * @throws IOException
-     * if an I/O error occurs
+     * @param sourcePath the path to the directory to copy content
+     * @param targetPath the path to the target directory
+     * @param regex      the regular expression to which this file name is to be matched
+     * @throws IOException if an I/O error occurs
      */
     public static void copy(String sourcePath, String targetPath, String regex) throws IOException {
-        if (sourcePath == null || targetPath == null || regex ==null) {
+        if (sourcePath == null || targetPath == null || regex == null) {
             throw new NullPointerException();
         }
         if (Files.notExists(new File(sourcePath).toPath()) || Files.notExists(new File(targetPath).toPath())) {
@@ -60,12 +53,12 @@ class FilesDirectory {
     //Recursively copies the directory
     private static void copyDirectory(File fileSource, String targetPath, String regex) throws IOException {
         File dirTarget = new File(targetPath + File.separator + fileSource.getName());
-        if (Files.notExists(dirTarget.toPath())){
+        if (Files.notExists(dirTarget.toPath())) {
             if (fileSource.getName().matches(regex)) {
                 Files.copy(new File(fileSource.getAbsolutePath()).toPath(), dirTarget.toPath());
                 copy(fileSource.getAbsolutePath(), targetPath + File.separator + fileSource.getName(), regex);
             }
-        }else {
+        } else {
             Set<String> targetListName = new TreeSet<>(Arrays.asList(requireNonNull(new File(targetPath).list())));
             List<Integer> numberDirectoriesList = new LinkedList<>(Collections.singletonList(0));
 
@@ -124,12 +117,9 @@ class FilesDirectory {
     /**
      * Move content directory to a target directory.
      *
-     * @param sourcePath
-     * the path to the directory to move content
-     * @param targetPath
-     * the path to the target directory
-     * @throws IOException
-     * if an I/O error occurs
+     * @param sourcePath the path to the directory to move content
+     * @param targetPath the path to the target directory
+     * @throws IOException if an I/O error occurs
      */
     public static void moveAll(String sourcePath, String targetPath) throws IOException {
         move(sourcePath, targetPath, ".*");
@@ -139,17 +129,13 @@ class FilesDirectory {
      * Move content directory to a target directory.
      * Whether files are moved whose name matches regular expression.
      *
-     * @param sourcePath
-     * the path to the directory to move content
-     * @param targetPath
-     * the path to the target directory
-     * @param regex
-     * the regular expression to which this file name is to be matched
-     * @throws IOException
-     * if an I/O error occurs
+     * @param sourcePath the path to the directory to move content
+     * @param targetPath the path to the target directory
+     * @param regex      the regular expression to which this file name is to be matched
+     * @throws IOException if an I/O error occurs
      */
     public static void move(String sourcePath, String targetPath, String regex) throws IOException {
-        if (sourcePath == null || targetPath == null || regex ==null) {
+        if (sourcePath == null || targetPath == null || regex == null) {
             throw new NullPointerException();
         }
         if (Files.notExists(new File(sourcePath).toPath()) || Files.notExists(new File(targetPath).toPath())) {
@@ -159,7 +145,7 @@ class FilesDirectory {
         for (File fileSource : requireNonNull(new File(sourcePath).listFiles())) {
             File fileTarget = new File(targetPath + File.separator + fileSource.getName());
             if (fileSource.getName().matches(regex)) {
-                replacementRequest(fileSource,fileTarget,regex);
+                replacementRequest(fileSource, fileTarget, regex);
             }
         }
     }
@@ -181,7 +167,7 @@ class FilesDirectory {
 
             if (!answerReplace.equalsIgnoreCase("yes") && !answerReplace.equalsIgnoreCase("no")) {
                 System.out.println(answerReplace + " expected \"yes\" or \"no\"");
-                replacementRequest(fileSource,fileTarget,regex);
+                replacementRequest(fileSource, fileTarget, regex);
             } else {
                 moveIsExistFile(fileSource, fileTarget,
                         regex, true, answerReplace.equalsIgnoreCase("yes"));
@@ -200,7 +186,7 @@ class FilesDirectory {
         if (Files.isDirectory(fileSource.toPath())) {
             if (exist == true && replace == true) {
                 if (fileSource.getName().matches(regex)) {
-                    delete(fileTarget.getAbsolutePath());
+                    deleteDirectory(fileTarget.getAbsolutePath());
                     Files.move(fileSource.toPath(), fileTarget.toPath(),
                             StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
                 }
@@ -233,22 +219,27 @@ class FilesDirectory {
     }
 
     /**
-     * Delete directory or file.
+     * Delete directory.
      *
-     * @param sourcePath
-     * the path to the directory or file to delete
-     * @throws IOException
-     * if an I/O error occurs
+     * @param sourcePath the path to the directory to deleteDirectory
+     * @throws IOException if an I/O error occurs
      */
-    public static void delete (String sourcePath) throws IOException {
+    public static void deleteDirectory(String sourcePath) throws IOException {
+        if (sourcePath == null) {
+            throw new NullPointerException();
+        }
+        if (Files.notExists(new File(sourcePath).toPath())) {
+            throw new IllegalArgumentException();
+        }
+
         File fileTarget = new File(sourcePath);
-        File [] tar = requireNonNull(fileTarget.listFiles());
+        File[] tar = requireNonNull(fileTarget.listFiles());
         if (tar.length != 0) {
             for (File target : tar) {
                 if (!target.isDirectory()) {
                     Files.delete(target.toPath());
-                }else {
-                    delete(target.getAbsolutePath());
+                } else {
+                    deleteDirectory(target.getAbsolutePath());
                 }
             }
         }
@@ -256,20 +247,16 @@ class FilesDirectory {
     }
 
     /**
-     * @param sourcePath
-     * the path to the directory.
-     * @return
-     * List absolute paths all content directory
+     * @param sourcePath the path to the directory.
+     * @return List absolute paths all content directory
      */
     public static List<String> getAllNameFileDirectory(String sourcePath) {
         return getNameFileDirectory(sourcePath, ".*");
     }
 
     /**
-     * @param sourcePath
-     * the path to the directory.
-     * @return
-     * List absolute paths name file which the matched regular expression directory
+     * @param sourcePath the path to the directory.
+     * @return List absolute paths name file which the matched regular expression directory
      */
     public static List<String> getNameFileDirectory(String sourcePath, String regex) {
         if (sourcePath == null || regex == null) {
