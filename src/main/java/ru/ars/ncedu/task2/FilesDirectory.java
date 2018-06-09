@@ -40,6 +40,9 @@ class FilesDirectory {
         if (Files.notExists(new File(sourcePath).toPath()) || Files.notExists(new File(targetPath).toPath())) {
             throw new IllegalArgumentException();
         }
+        if (!Files.isDirectory(new File(sourcePath).toPath()) || !Files.isDirectory(new File(targetPath).toPath())) {
+            throw new IllegalArgumentException();
+        }
 
         for (File fileSource : requireNonNull(new File(sourcePath).listFiles())) {
             if (Files.isDirectory(fileSource.toPath())) {
@@ -141,6 +144,9 @@ class FilesDirectory {
         if (Files.notExists(new File(sourcePath).toPath()) || Files.notExists(new File(targetPath).toPath())) {
             throw new IllegalArgumentException();
         }
+        if (!Files.isDirectory(new File(sourcePath).toPath()) || !Files.isDirectory(new File(targetPath).toPath())) {
+            throw new IllegalArgumentException();
+        }
 
         for (File fileSource : requireNonNull(new File(sourcePath).listFiles())) {
             File fileTarget = new File(targetPath + File.separator + fileSource.getName());
@@ -228,7 +234,7 @@ class FilesDirectory {
         if (sourcePath == null) {
             throw new NullPointerException();
         }
-        if (Files.notExists(new File(sourcePath).toPath())) {
+        if (Files.notExists(new File(sourcePath).toPath()) || !Files.isDirectory(new File(sourcePath).toPath())) {
             throw new IllegalArgumentException();
         }
 
@@ -262,7 +268,7 @@ class FilesDirectory {
         if (sourcePath == null || regex == null) {
             throw new NullPointerException();
         }
-        if (Files.notExists(new File(sourcePath).toPath())) {
+        if (Files.notExists(new File(sourcePath).toPath()) || !Files.isDirectory(new File(sourcePath).toPath())) {
             throw new IllegalArgumentException();
         }
 

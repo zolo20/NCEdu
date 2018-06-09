@@ -117,8 +117,8 @@ public class MainTask2 {
     }
 
     private static String checkerIsNotExistDirectory(String path, String nameMethod, Method method) {
-        if (path.equals("") || Files.notExists(new File(path).toPath())) {
-            System.out.println("Specified path " + "\"" + path + "\"" + " is not exist(The existing path is expected)");
+        if (path.equals("") || Files.notExists(new File(path).toPath()) || !Files.isDirectory(new File(path).toPath())) {
+            System.out.println("Specified path " + "\"" + path + "\"" + " is not exist or is not directory");
             System.out.print("Enter an existing path:");
             path = checkerIsNotExistDirectory(new Scanner(System.in).nextLine().trim(), nameMethod, method);
         }
