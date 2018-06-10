@@ -6,6 +6,12 @@ import java.util.*;
 
 public class OutputCode {
 
+    /**
+     * Outputs the class code on the console.
+     *
+     * @param clazz
+     * the class of the type to cast this class object
+     */
     public static void outputConsoleCode(Class clazz) {
         System.out.println(packageName(clazz) + "\n");
         System.out.println(importPackage(clazz) + "\n");
@@ -16,11 +22,27 @@ public class OutputCode {
         System.out.print("}");
     }
 
+    /**
+     * @param clazz
+     * the class of the type to cast this class object
+     * @return
+     * a string {@code package} name package, which contains a class
+     */
     public static String packageName(Class clazz) {
         Package pkg = clazz.getPackage();
         return pkg.toString() + ";";
     }
 
+    /**
+     * Collects names of packages, at implemented interfaces, at types field,
+     * at parameters constructors, at parameters and returned types methods and at annotation,
+     * which excluded at package {@code java.lang}.
+     *
+     * @param clazz
+     * the class of the type to cast this class object.
+     * @return
+     * a string {@code import} names of imported packages.
+     */
     public static String importPackage(Class clazz) {
         String importsPkg = "";
         Set<String> imports = new HashSet<>();
@@ -83,6 +105,12 @@ public class OutputCode {
         return importsPkg;
     }
 
+    /**
+     * @param clazz
+     * the class of the type to cast this class object.
+     * @return
+     * a string about the state of class(Modifier, inheritable classes, implementable interfaces)
+     */
     public static String stateClass(Class clazz) {
         String Modifiers = getModifiers(clazz.getModifiers());
         String nameClass = clazz.getSimpleName();
@@ -100,6 +128,12 @@ public class OutputCode {
         return Modifiers + "class" + " " + nameClass + superClass + " " + interfaceImpl + " " + "{";
     }
 
+    /**
+     * @param clazz
+     * the class of the type to cast this class object.
+     * @return
+     * a string with modifiers, types, names fields.
+     */
     public static String fields(Class clazz) {
         String nameFields = "";
         Field[] fields = clazz.getDeclaredFields();
@@ -110,6 +144,12 @@ public class OutputCode {
         return nameFields;
     }
 
+    /**
+     * @param clazz
+     * the class of the type to cast this class object.
+     * @return
+     * a string modifier it access a constructor and parameters a constructor.
+     */
     public static String constructors(Class clazz) {
         String constructor = "";
         Constructor[] constructors = clazz.getDeclaredConstructors();
@@ -120,6 +160,12 @@ public class OutputCode {
         return constructor;
     }
 
+    /**
+     * @param clazz
+     * the class of the type to cast this class object.
+     * @return
+     * a string modifiers a methods, returned type, and parameters.
+     */
     public static String methods(Class clazz) {
         String nameMethods = "";
         Method[] methods = clazz.getDeclaredMethods();
@@ -134,6 +180,12 @@ public class OutputCode {
         return nameMethods;
     }
 
+    /**
+     * @param valueMod
+     * a set of modifiers
+     * @return
+     * a string modifiers
+     */
     private static String getModifiers(int valueMod) {
         String modifiers = "";
         if (Modifier.isPublic(valueMod)) modifiers += "public ";
@@ -147,6 +199,12 @@ public class OutputCode {
         return modifiers;
     }
 
+    /**
+     * @param parameters
+     * array parameters a methods, constructor.
+     * @return
+     * a string types a parameters
+     */
     private static String getParameters(Parameter[] parameters) {
         String signature = "";
         for (int i = 0; i < parameters.length; i++) {

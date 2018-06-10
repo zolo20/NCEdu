@@ -2,7 +2,7 @@ package ru.ars.ncedu.task1;
 
 import java.util.Comparator;
 
-class QuickSort {
+public class QuickSort {
 
     private QuickSort() {
     }

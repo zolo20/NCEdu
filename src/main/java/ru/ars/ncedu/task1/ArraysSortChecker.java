@@ -1,6 +1,6 @@
 package ru.ars.ncedu.task1;
 
-class ArraysSortChecker {
+public class ArraysSortChecker {
 
     private ArraysSortChecker() {
     }

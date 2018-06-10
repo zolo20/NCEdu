@@ -13,7 +13,7 @@ class Test implements Serializable, Cloneable {
 
     }
 
-    public Test(Integer field) {
+    public Test(Integer field)  {
         this.field = field;
     }
 
