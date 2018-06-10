@@ -14,11 +14,11 @@ public class OutputCode {
      */
     public static void outputConsoleCode(Class clazz) {
         System.out.println(packageName(clazz) + "\n");
-        System.out.println(importPackage(clazz) + "\n");
-        System.out.println(stateClass(clazz) + "\n");
-        System.out.println(fields(clazz));
+        System.out.println(importPackage(clazz));
+        System.out.println(stateClass(clazz));
+        System.out.println(fields(clazz) + "\n");
         System.out.println(constructors(clazz));
-        System.out.println(methods(clazz));
+        System.out.print(methods(clazz));
         System.out.print("}");
     }
 
@@ -28,7 +28,7 @@ public class OutputCode {
      * @return
      * a string {@code package} name package, which contains a class
      */
-    public static String packageName(Class clazz) {
+    private static String packageName(Class clazz) {
         Package pkg = clazz.getPackage();
         return pkg.toString() + ";";
     }
@@ -43,8 +43,8 @@ public class OutputCode {
      * @return
      * a string {@code import} names of imported packages.
      */
-    public static String importPackage(Class clazz) {
-        String importsPkg = "";
+    private static String importPackage(Class clazz) {
+        StringBuilder importsPkg = new StringBuilder();
         Set<String> imports = new HashSet<>();
         Class[] interfaces = clazz.getInterfaces();
         for (Class anInterface : interfaces) {
@@ -99,10 +99,10 @@ public class OutputCode {
             }
         }
         for (String anImport : imports) {
-            importsPkg += "import " + anImport + ";" + "\n";
+            importsPkg.append("import ").append(anImport).append(";").append("\n");
         }
 
-        return importsPkg;
+        return importsPkg.toString();
     }
 
     /**
@@ -111,21 +111,27 @@ public class OutputCode {
      * @return
      * a string about the state of class(Modifier, inheritable classes, implementable interfaces)
      */
-    public static String stateClass(Class clazz) {
-        String Modifiers = getModifiers(clazz.getModifiers());
-        String nameClass = clazz.getSimpleName();
-        String superClass = clazz.getSuperclass().getSimpleName().equals("Object") ? "" : " extends" + " " + clazz.getSuperclass().getSimpleName();
+    private static String stateClass(Class clazz) {
+        StringBuilder modifiers = new StringBuilder(getModifiers(clazz.getModifiers()));
+        StringBuilder nameClass = new StringBuilder(clazz.getSimpleName());
+        String superClass = clazz.getSuperclass() == null ? "" :
+                clazz.getSuperclass().getSimpleName().equals("Object") ? "" :
+                        " extends" + " " + clazz.getSuperclass().getSimpleName();
+        StringBuilder superClassBuilder = new StringBuilder(superClass);
 
         Class[] interfaces = clazz.getInterfaces();
-        String nameInterface = "";
+        StringBuilder nameInterface = new StringBuilder();
         for (int i = 0; i < interfaces.length; i++) {
-            nameInterface += " " + interfaces[i].getSimpleName();
+            nameInterface.append(" ").append(interfaces[i].getSimpleName());
             if (interfaces.length > 1 && i == interfaces.length - 2) {
-                nameInterface += ",";
+                nameInterface.append(",");
             }
         }
-        String interfaceImpl = nameInterface.equals("") ? "" : "implements" + nameInterface;
-        return Modifiers + "class" + " " + nameClass + superClass + " " + interfaceImpl + " " + "{";
+        String interfaceImpl = nameInterface.toString().equals("") ? "" : "implements" + nameInterface;
+        StringBuilder interfaceImplBuilder = new StringBuilder(interfaceImpl);
+
+        return modifiers.append("class").append(" ").append(nameClass).append(superClassBuilder).append(" ").
+                append(interfaceImplBuilder).append(" ").append("{").toString();
     }
 
     /**
@@ -134,14 +140,14 @@ public class OutputCode {
      * @return
      * a string with modifiers, types, names fields.
      */
-    public static String fields(Class clazz) {
-        String nameFields = "";
+    private static String fields(Class clazz) {
+        StringBuilder nameFields = new StringBuilder();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
-            nameFields += "\t" + getModifiers(field.getModifiers()) +field.getType().getSimpleName() +
-                    " " + field.getName() + ";" + "\n";
+            nameFields.append("\t").append(getModifiers(field.getModifiers())).
+                    append(field.getType().getSimpleName()).append(" ").append(field.getName()).append(";").append("\n");
         }
-        return nameFields;
+        return nameFields.toString();
     }
 
     /**
@@ -150,14 +156,14 @@ public class OutputCode {
      * @return
      * a string modifier it access a constructor and parameters a constructor.
      */
-    public static String constructors(Class clazz) {
-        String constructor = "";
+    private static String constructors(Class clazz) {
+        StringBuilder constructor = new StringBuilder();
         Constructor[] constructors = clazz.getDeclaredConstructors();
         for (Constructor c : constructors) {
-            constructor += "\t" + getModifiers(c.getModifiers()) + clazz.getSimpleName() +
-                    "("+ getParameters(c.getParameters()) + ")" + " {  }" + "\n";
+            constructor.append("\t").append(getModifiers(c.getModifiers())).append(clazz.getSimpleName()).
+                    append("(").append(getParameters(c.getParameters())).append(")").append(" {  }").append("\n").append("\n");
         }
-        return constructor;
+        return constructor.toString();
     }
 
     /**
@@ -166,18 +172,19 @@ public class OutputCode {
      * @return
      * a string modifiers a methods, returned type, and parameters.
      */
-    public static String methods(Class clazz) {
-        String nameMethods = "";
+    private static String methods(Class clazz) {
+        StringBuilder nameMethods = new StringBuilder();
         Method[] methods = clazz.getDeclaredMethods();
         for (Method m : methods) {
             Annotation[] annotations = m.getAnnotations();
             for (Annotation annotation : annotations) {
-                nameMethods += "\t" + "@" + annotation.annotationType().getSimpleName() + "\n";
+                nameMethods.append("\t" + "@").append(annotation.annotationType().getSimpleName()).append("\n");
             }
-            nameMethods += "\t" +getModifiers(m.getModifiers()) + m.getReturnType().getSimpleName() + " " + m.getName() +
-                    "(" + getParameters(m.getParameters()) + ") {  }" + "\n";
+            nameMethods.append("\t").append(getModifiers(m.getModifiers())).
+                    append(m.getReturnType().getSimpleName()).append(" ").append(m.getName()).
+                    append("(").append(getParameters(m.getParameters())).append(") {  }").append("\n").append("\n");
         }
-        return nameMethods;
+        return nameMethods.toString();
     }
 
     /**
@@ -206,13 +213,13 @@ public class OutputCode {
      * a string types a parameters
      */
     private static String getParameters(Parameter[] parameters) {
-        String signature = "";
+        StringBuilder signature = new StringBuilder();
         for (int i = 0; i < parameters.length; i++) {
-            signature += parameters[i].getType().getSimpleName() + " " + parameters[i].getName();
+            signature.append(parameters[i].getType().getSimpleName()).append(" ").append(parameters[i].getName());
             if (parameters.length > 1 && i == parameters.length - 2) {
-                signature += ", ";
+                signature.append(", ");
             }
         }
-        return signature;
+        return signature.toString();
     }
 }

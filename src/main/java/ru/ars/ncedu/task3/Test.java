@@ -3,7 +3,7 @@ package ru.ars.ncedu.task3;
 import java.io.Serializable;
 import java.util.List;
 
-class Test implements Serializable, Cloneable {
+public class Test implements Serializable, Cloneable {
     private int field;
     protected String[] strings;
     private static final Long serialNumber = 500L;
