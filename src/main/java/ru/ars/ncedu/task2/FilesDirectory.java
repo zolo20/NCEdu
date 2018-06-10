@@ -8,7 +8,7 @@ import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 
-class FilesDirectory {
+public class FilesDirectory {
 
     private FilesDirectory() {
     }
