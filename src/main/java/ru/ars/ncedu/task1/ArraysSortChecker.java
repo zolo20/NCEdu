@@ -5,7 +5,7 @@ class ArraysSortChecker {
     private ArraysSortChecker() {
     }
 
-    static <T extends Comparable<? super T>> boolean isSort(T array[]) {
+    public static <T extends Comparable<? super T>> boolean isSort(T array[]) {
         if (array == null) {
             return false;
         }

@@ -7,7 +7,7 @@ class QuickSort {
     private QuickSort() {
     }
 
-    static <T extends Comparable<? super T>> void sort(T array[], Comparator<? super T> cmp) {
+    public static <T extends Comparable<? super T>> void sort(T array[], Comparator<? super T> cmp) {
         if (array != null && array.length != 0) {
             sort(array, 0, array.length - 1, cmp);
         }
@@ -45,7 +45,7 @@ class QuickSort {
         }
     }
 
-    static <T extends Comparable<? super T>> void sort(T array[]) {
+    public static <T extends Comparable<? super T>> void sort(T array[]) {
         if (array != null && array.length != 0) {
             sort(array, 0, array.length - 1);
         }

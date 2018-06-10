@@ -7,7 +7,7 @@ public class GenerationArrayInteger {
     private GenerationArrayInteger() {
     }
 
-    static Integer[] arrayGeneration(int lengthArray) {
+    public static Integer[] arrayGeneration(int lengthArray) {
         if (lengthArray < 0) {
             throw new IllegalArgumentException("No correct value lengthArray: negative lengthArray not allowed");
         }
