@@ -46,8 +46,7 @@ public class OutputCode {
     private static String importPackage(Class clazz) {
         StringBuilder importsPkg = new StringBuilder();
         Set<String> imports = new HashSet<>();
-        Class[] interfaces = clazz.getInterfaces();
-        for (Class anInterface : interfaces) {
+        for (Class anInterface : clazz.getInterfaces()) {
             if (!anInterface.getName().matches("java\\.lang\\.[A-Z].*")) {
                 imports.add(anInterface.getName());
             }
