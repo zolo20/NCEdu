@@ -53,16 +53,14 @@ public class OutputCode {
             }
         }
 
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
+        for (Field field : clazz.getDeclaredFields()) {
             if (!field.getType().getName().matches("java\\.lang\\.[A-Z].*") &&
                     !field.getType().isArray() && !field.getType().isPrimitive()) {
                 imports.add(field.getType().getName());
             }
         }
 
-        Constructor[] constructors = clazz.getDeclaredConstructors();
-        for (Constructor c : constructors) {
+        for (Constructor c : clazz.getDeclaredConstructors()) {
             Class[] paramType = c.getParameterTypes();
             for (Class param : paramType) {
                 if (!param.getName().matches("java\\.lang\\.[A-Z].*") &&
@@ -73,8 +71,7 @@ public class OutputCode {
 
         }
 
-        Method[] methods = clazz.getDeclaredMethods();
-        for (Method m : methods) {
+        for (Method m : clazz.getDeclaredMethods()) {
             Annotation[] annotations = m.getAnnotations();
             for (Annotation annotation : annotations) {
                 if (!annotation.annotationType().getName().matches("java\\.lang\\.[A-Z].*") &&
@@ -86,12 +83,10 @@ public class OutputCode {
             if (!m.getReturnType().getName().matches("java\\.lang\\.[A-Z].*") &&
                     !m.getReturnType().getName().matches("void") &&
                     !m.getReturnType().isArray() && !m.getReturnType().isPrimitive()) {
-                System.out.println(m.getReturnType().getName());
                 imports.add(m.getReturnType().getName());
             }
 
-            Class[] paramType = m.getParameterTypes();
-            for (Class param : paramType) {
+            for (Class param : m.getParameterTypes()) {
                 if (!param.getName().matches("java\\.lang\\.[A-Z].*") &&
                         !param.isArray() && !param.isPrimitive()) {
                     imports.add(param.getName());
@@ -142,8 +137,7 @@ public class OutputCode {
      */
     private static String fields(Class clazz) {
         StringBuilder nameFields = new StringBuilder();
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
+        for (Field field : clazz.getDeclaredFields()) {
             nameFields.append("\t").append(getModifiers(field.getModifiers())).
                     append(field.getType().getSimpleName()).append(" ").append(field.getName()).append(";").append("\n");
         }
@@ -158,8 +152,7 @@ public class OutputCode {
      */
     private static String constructors(Class clazz) {
         StringBuilder constructor = new StringBuilder();
-        Constructor[] constructors = clazz.getDeclaredConstructors();
-        for (Constructor c : constructors) {
+        for (Constructor c : clazz.getDeclaredConstructors()) {
             constructor.append("\t").append(getModifiers(c.getModifiers())).append(clazz.getSimpleName()).
                     append("(").append(getParameters(c.getParameters())).append(")").append(" {  }").append("\n").append("\n");
         }
@@ -174,8 +167,7 @@ public class OutputCode {
      */
     private static String methods(Class clazz) {
         StringBuilder nameMethods = new StringBuilder();
-        Method[] methods = clazz.getDeclaredMethods();
-        for (Method m : methods) {
+        for (Method m : clazz.getDeclaredMethods()) {
             Annotation[] annotations = m.getAnnotations();
             for (Annotation annotation : annotations) {
                 nameMethods.append("\t" + "@").append(annotation.annotationType().getSimpleName()).append("\n");
