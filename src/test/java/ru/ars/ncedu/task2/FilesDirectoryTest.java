@@ -15,23 +15,19 @@ public class FilesDirectoryTest {
 
     private static final String pathResource =
             requireNonNull(FilesDirectoryTest.class.getClassLoader().getResource("")).getFile();
-    private final String pathResourceDir1 = pathResource + File.separator + "Tests" + File.separator + "Dir1";
-    private final String pathResourceDir2 = pathResource + File.separator + "Tests" + File.separator + "Dir2";
-    private final String regex = ".*\\.xml";
+    private static final String pathResourceDir1 = pathResource + File.separator + "Tests" + File.separator + "Dir1";
+    private static final String pathResourceDir2 = pathResource + File.separator + "Tests" + File.separator + "Dir2";
+    private static final String regex = ".*\\.xml";
 
     @BeforeClass
     public static void generateFileBeforeClass() throws IOException {
-        Files.createDirectories(new File(pathResource + File.separator + "Tests" + File.separator + "Dir1").toPath());
-        Files.createFile(new File(pathResource + File.separator + "Tests" +
-                File.separator + "Dir1" + File.separator + "xmlTestDir1.xml").toPath());
-        Files.createFile(new File(pathResource + File.separator + "Tests" +
-                File.separator + "Dir1" + File.separator + "txtTestDir1.txt").toPath());
+        Files.createDirectories(new File(pathResourceDir1).toPath());
+        Files.createFile(new File(pathResourceDir1 + File.separator + "xmlTestDir1.xml").toPath());
+        Files.createFile(new File(pathResourceDir1 + File.separator + "txtTestDir1.txt").toPath());
 
-        Files.createDirectories(new File(pathResource + File.separator + "Tests" + File.separator + "Dir2").toPath());
-        Files.createFile(new File(pathResource + File.separator + "Tests" +
-                File.separator + "Dir2" + File.separator + "xmlTestDir2.xml").toPath());
-        Files.createFile(new File(pathResource + File.separator + "Tests" +
-                File.separator + "Dir2" + File.separator + "txtTestDir2.txt").toPath());
+        Files.createDirectories(new File(pathResourceDir2).toPath());
+        Files.createFile(new File(pathResourceDir2 + File.separator + "xmlTestDir2.xml").toPath());
+        Files.createFile(new File(pathResourceDir2 + File.separator + "txtTestDir2.txt").toPath());
 
     }
 
