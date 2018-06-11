@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class MainTask2 {
     public static void main(String... args) {
-        System.out.println("Choose an method:");
+        System.out.println("Choose a method:");
         System.out.println("1. copy" + "\n" +
                 "2. copyAll" + "\n" +
                 "3. move" + "\n" +
@@ -48,6 +48,7 @@ public class MainTask2 {
         String from;
         String to;
         String regex;
+        System.out.println("In order to return to the selection menu, enter \"return\". \n");
         try {
             switch (nameMethod) {
                 case "copy":
@@ -117,7 +118,9 @@ public class MainTask2 {
     }
 
     private static String checkerIsNotExistDirectory(String path, String nameMethod, Method method) {
-        if (path.equals("") || Files.notExists(new File(path).toPath()) || !Files.isDirectory(new File(path).toPath())) {
+        if (path.equalsIgnoreCase("return")) {
+            main();
+        } else if (path.equals("") || Files.notExists(new File(path).toPath()) || !Files.isDirectory(new File(path).toPath())) {
             System.out.println("Specified path " + "\"" + path + "\"" + " is not exist or is not directory");
             System.out.print("Enter an existing path:");
             path = checkerIsNotExistDirectory(new Scanner(System.in).nextLine().trim(), nameMethod, method);
