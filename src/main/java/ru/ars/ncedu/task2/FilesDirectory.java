@@ -16,9 +16,9 @@ public class FilesDirectory {
     /**
      * Copy content directory to a target directory.
      *
-     * @param sourcePath the path to the directory to copy content
-     * @param targetPath the path to the target directory
-     * @throws IOException if an I/O error occurs
+     * @param sourcePath the path to the directory to copy content.
+     * @param targetPath the path to the target directory.
+     * @throws IOException if an I/O error occurs.
      */
     public static void copyAll(String sourcePath, String targetPath) throws IOException {
         copy(sourcePath, targetPath, ".*");
@@ -28,10 +28,10 @@ public class FilesDirectory {
      * Copy content directory to a target directory.
      * Whether files are copied whose name matches regular expression.
      *
-     * @param sourcePath the path to the directory to copy content
-     * @param targetPath the path to the target directory
-     * @param regex      the regular expression to which this file name is to be matched
-     * @throws IOException if an I/O error occurs
+     * @param sourcePath the path to the directory to copy content.
+     * @param targetPath the path to the target directory.
+     * @param regex      the regular expression to which this file name is to be matched.
+     * @throws IOException if an I/O error occurs.
      */
     public static void copy(String sourcePath, String targetPath, String regex) throws IOException {
         if (sourcePath == null || targetPath == null || regex == null) {
@@ -53,7 +53,7 @@ public class FilesDirectory {
         }
     }
 
-    //Recursively copies the directory
+    //Recursively copies the directory.
     private static void copyDirectory(File fileSource, String targetPath, String regex) throws IOException {
         File dirTarget = new File(targetPath + File.separator + fileSource.getName());
         if (Files.notExists(dirTarget.toPath())) {
@@ -85,7 +85,7 @@ public class FilesDirectory {
         }
     }
 
-    //Copies the file
+    //Copies the file.
     private static void copyFile(File fileSource, String targetPath, String regex) throws IOException {
         File fileTarget = new File(targetPath + File.separator + fileSource.getName());
         if (Files.notExists(fileTarget.toPath())) {
@@ -120,9 +120,9 @@ public class FilesDirectory {
     /**
      * Move content directory to a target directory.
      *
-     * @param sourcePath the path to the directory to move content
-     * @param targetPath the path to the target directory
-     * @throws IOException if an I/O error occurs
+     * @param sourcePath the path to the directory to move content.
+     * @param targetPath the path to the target directory.
+     * @throws IOException if an I/O error occurs.
      */
     public static void moveAll(String sourcePath, String targetPath) throws IOException {
         move(sourcePath, targetPath, ".*");
@@ -132,10 +132,10 @@ public class FilesDirectory {
      * Move content directory to a target directory.
      * Whether files are moved whose name matches regular expression.
      *
-     * @param sourcePath the path to the directory to move content
-     * @param targetPath the path to the target directory
-     * @param regex      the regular expression to which this file name is to be matched
-     * @throws IOException if an I/O error occurs
+     * @param sourcePath the path to the directory to move content.
+     * @param targetPath the path to the target directory.
+     * @param regex      the regular expression to which this file name is to be matched.
+     * @throws IOException if an I/O error occurs.
      */
     public static void move(String sourcePath, String targetPath, String regex) throws IOException {
         if (sourcePath == null || targetPath == null || regex == null) {
@@ -160,12 +160,12 @@ public class FilesDirectory {
      * If file exist, the user is prompted for a replacement request.
      * If users answered "yes", does replace.
      * If users answered "no", does not replace.
-     * If users not answered "no" or "yes", outputs message "No correct expression"
+     * If users not answered "no" or "yes", outputs message "No correct expression".
      */
     private static void replacementRequest(File fileSource, File fileTarget, String regex) throws IOException {
-        boolean exist = exists(fileSource, fileTarget);
+        boolean exist = isExists(fileSource, fileTarget);
         if (exist == true) {
-            System.out.println("File " + fileSource.getName() + " is exists , replace a file?(expected: \"yes\" or \"no\")");
+            System.out.println("File " + fileSource.getName() + " is isExists , replace a file?(expected: \"yes\" or \"no\")");
 
             String enterReplace = new Scanner(System.in).nextLine();
             String answerReplace = enterReplace.equalsIgnoreCase("yes") ? "yes" :
@@ -216,7 +216,7 @@ public class FilesDirectory {
     }
 
     //Check exist file in directory.
-    private static boolean exists(File fileSource, File fileTarget) {
+    private static boolean isExists(File fileSource, File fileTarget) {
         if (Files.isDirectory(fileSource.toPath())) {
             return Files.exists(fileTarget.toPath());
         } else {
@@ -227,8 +227,8 @@ public class FilesDirectory {
     /**
      * Delete directory.
      *
-     * @param sourcePath the path to the directory to deleteDirectory
-     * @throws IOException if an I/O error occurs
+     * @param sourcePath the path to the directory to deleteDirectory.
+     * @throws IOException if an I/O error occurs.
      */
     public static void deleteDirectory(String sourcePath) throws IOException {
         if (sourcePath == null) {
@@ -254,7 +254,7 @@ public class FilesDirectory {
 
     /**
      * @param sourcePath the path to the directory.
-     * @return List absolute paths all content directory
+     * @return List absolute paths all content directory.
      */
     public static List<String> getAllNameFileDirectory(String sourcePath) {
         return getNameFileDirectory(sourcePath, ".*");
@@ -262,7 +262,7 @@ public class FilesDirectory {
 
     /**
      * @param sourcePath the path to the directory.
-     * @return List absolute paths name file which the matched regular expression directory
+     * @return List absolute paths name file which the matched regular expression directory.
      */
     public static List<String> getNameFileDirectory(String sourcePath, String regex) {
         if (sourcePath == null || regex == null) {
