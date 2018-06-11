@@ -21,8 +21,9 @@ public class MainTask2 {
             System.out.print("Enter: ");
             String nameMethod = new Scanner(System.in).nextLine().trim();
             if (nameMethod.equalsIgnoreCase("exit")) {
-                System.exit(0);
+                break;
             }
+            System.out.println("_________________________________________________________");
 
             Class<?> clazz = FilesDirectory.class;
             Method[] methods = clazz.getDeclaredMethods();
@@ -40,6 +41,7 @@ public class MainTask2 {
 
             if (hasEntered == false) {
                 System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
+                System.out.println("---------------------------------------------------------");
             }
         }
     }
@@ -49,67 +51,143 @@ public class MainTask2 {
         String from;
         String to;
         String regex;
-        System.out.println("In order to return to the selection menu, enter \"return\". \n");
+        System.out.println("In order to return to the selection menu, enter \"return\".");
         try {
             switch (nameMethod) {
                 case "copy":
                     System.out.print("Enter where to copy from(Example:C:\\Users\\123>):");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (from.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     System.out.print("Enter where to copy(Example:C:\\Users\\123>):");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (to.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     System.out.print("Enter regular expression:");
                     regex = in.nextLine().trim();
+                    if (regex.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     method.invoke(null, from, to, regex);
-                    System.out.println("copied" + "\n");
+                    System.out.println("copied");
+                    System.out.println("---------------------------------------------------------");
                     break;
                 case "copyAll":
                     System.out.print("Enter where to copy from(Example:C:\\Users\\123>):");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (from.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     System.out.print("Enter where to copy(Example:C:\\Users\\123>):");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (to.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     method.invoke(null, from, to);
-                    System.out.println("copied" + "\n");
+                    System.out.println("copied");
+                    System.out.println("---------------------------------------------------------");
                     break;
                 case "move":
                     System.out.print("Enter where to move from(Example:C:\\Users\\123>):");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (from.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     System.out.print("Enter where to move(Example:C:\\Users\\123>):");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (to.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     System.out.print("Enter regular expression:");
                     regex = in.nextLine().trim();
+                    if (regex.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     method.invoke(null, from, to, regex);
-                    System.out.println("moved" + "\n");
+                    System.out.println("moved");
+                    System.out.println("---------------------------------------------------------");
                     break;
                 case "moveAll":
                     System.out.print("Enter where to move from(Example:C:\\Users\\123>):");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (from.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     System.out.print("Enter where to move(Example:C:\\Users\\123>):");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (to.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     method.invoke(null, from, to);
-                    System.out.println("moved" + "\n");
+                    System.out.println("moved");
+                    System.out.println("---------------------------------------------------------");
                     break;
                 case "getNameFileDirectory":
                     System.out.print("Enter where to get name file from(Example:C:\\Users\\123>):");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (from.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     System.out.print("Enter regular expression:");
                     regex = in.nextLine().trim();
-                    System.out.println(method.invoke(null, from, regex) + "\n");
+                    if (regex.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
+                    System.out.println(method.invoke(null, from, regex));
+                    System.out.println("---------------------------------------------------------");
                     break;
                 case "getAllNameFileDirectory":
                     System.out.print("Enter where to get name file from(Example:C:\\Users\\123>):");
-                    from = in.nextLine().trim();
-                    checkerIsNotExistDirectory(from, nameMethod, method);
-                    System.out.println(method.invoke(null, from) + "\n");
+                    from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (from.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
+                    System.out.println(method.invoke(null, from));
+                    System.out.println("---------------------------------------------------------");
                     break;
                 case "deleteDirectory":
                     System.out.print("Enter path to deleteDirectory(Example:C:\\Users\\123>):");
-                    from = in.nextLine().trim();
-                    checkerIsNotExistDirectory(from, nameMethod, method);
+                    from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
+                    if (from.equalsIgnoreCase("return")) {
+                        System.out.println("---------------------------------------------------------");
+                        break;
+                    }
+
                     method.invoke(null, from);
                     System.out.println("deleted" + "\n");
+                    System.out.println("---------------------------------------------------------");
                     break;
                 default:
                     System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
+                    System.out.println("---------------------------------------------------------");
                     break;
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
@@ -120,7 +198,7 @@ public class MainTask2 {
 
     private static String checkerIsNotExistDirectory(String path, String nameMethod, Method method) {
         if (path.equalsIgnoreCase("return")) {
-            main();
+            return path;
         } else if (path.equals("") || Files.notExists(new File(path).toPath()) || !Files.isDirectory(new File(path).toPath())) {
             System.out.println("Specified path " + "\"" + path + "\"" + " is not exist or is not directory");
             System.out.print("Enter an existing path:");
