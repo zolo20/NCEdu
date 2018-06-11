@@ -7,40 +7,41 @@ import java.util.Scanner;
 
 public class MainTask2 {
     public static void main(String... args) {
-        System.out.println("Choose a method:");
-        System.out.println("1. copy" + "\n" +
-                "2. copyAll" + "\n" +
-                "3. move" + "\n" +
-                "4. moveAll" + "\n" +
-                "5. getAllNameFileDirectory" + "\n" +
-                "6. getNameFileDirectory" + "\n" +
-                "7. deleteDirectory" + "\n" +
-                "8. exit"
-        );
-        System.out.print("Enter: ");
-        String nameMethod = new Scanner(System.in).nextLine().trim();
-        if (nameMethod.equalsIgnoreCase("exit")) {
-            System.exit(0);
-        }
+        while (true) {
+            System.out.println("Choose a method:");
+            System.out.println("1. copy" + "\n" +
+                    "2. copyAll" + "\n" +
+                    "3. move" + "\n" +
+                    "4. moveAll" + "\n" +
+                    "5. getAllNameFileDirectory" + "\n" +
+                    "6. getNameFileDirectory" + "\n" +
+                    "7. deleteDirectory" + "\n" +
+                    "8. exit"
+            );
+            System.out.print("Enter: ");
+            String nameMethod = new Scanner(System.in).nextLine().trim();
+            if (nameMethod.equalsIgnoreCase("exit")) {
+                System.exit(0);
+            }
 
-        Class<?> clazz = FilesDirectory.class;
-        Method[] methods = clazz.getDeclaredMethods();
-        boolean hasEntered = false;
-        for (Method method : methods) {
-            try {
-                if (nameMethod.matches(method.getName())) {
-                    method = clazz.getDeclaredMethod(nameMethod, method.getParameterTypes());
-                    hasEntered = startMethod(nameMethod, method);
+            Class<?> clazz = FilesDirectory.class;
+            Method[] methods = clazz.getDeclaredMethods();
+            boolean hasEntered = false;
+            for (Method method : methods) {
+                try {
+                    if (nameMethod.matches(method.getName())) {
+                        method = clazz.getDeclaredMethod(nameMethod, method.getParameterTypes());
+                        hasEntered = startMethod(nameMethod, method);
+                    }
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
                 }
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+            }
+
+            if (hasEntered == false) {
+                System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
             }
         }
-
-        if (hasEntered == false) {
-            System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
-        }
-        main();
     }
 
     private static boolean startMethod(String nameMethod, Method method) {
