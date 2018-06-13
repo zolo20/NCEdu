@@ -170,7 +170,7 @@ public class FilesDirectory {
         boolean exist = isExists(fileSource, fileTarget);
         if (exist == true) {
             System.out.println("File " + "\"" + fileSource.getName() + "\"" +
-                    " is exists , replace a file?(expected: \"yes\" or \"no\")");
+                    " is exists, replace a file?(expected: \"yes\" or \"no\")");
 
             String enterReplace = new Scanner(System.in).nextLine();
             String answerReplace = enterReplace.equalsIgnoreCase("yes") ? "yes" :
