@@ -46,7 +46,9 @@ public class FilesDirectory {
 
         for (File fileSource : requireNonNull(new File(sourcePath).listFiles())) {
             if (Files.isDirectory(fileSource.toPath())) {
-                copyDirectory(fileSource, targetPath, regex);
+                if (!targetPath.contains(fileSource.getAbsolutePath())) {
+                    copyDirectory(fileSource, targetPath, regex);
+                }
             } else {
                 copyFile(fileSource, targetPath, regex);
             }
@@ -151,7 +153,9 @@ public class FilesDirectory {
         for (File fileSource : requireNonNull(new File(sourcePath).listFiles())) {
             File fileTarget = new File(targetPath + File.separator + fileSource.getName());
             if (fileSource.getName().matches(regex)) {
-                replacementRequest(fileSource, fileTarget, regex);
+                if (!targetPath.contains(fileSource.getAbsolutePath())) {
+                    replacementRequest(fileSource, fileTarget, regex);
+                }
             }
         }
     }
