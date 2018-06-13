@@ -55,21 +55,21 @@ public class MainTask2 {
         try {
             switch (nameMethod) {
                 case "copy":
-                    System.out.print("Enter where to copy from(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to copy from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (from.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
                         break;
                     }
 
-                    System.out.print("Enter where to copy(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to copy(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (to.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
                         break;
                     }
 
-                    System.out.print("Enter regular expression:");
+                    System.out.print("Enter regular expression: ");
                     regex = in.nextLine().trim();
                     if (regex.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
@@ -81,14 +81,14 @@ public class MainTask2 {
                     System.out.println("---------------------------------------------------------");
                     break;
                 case "copyAll":
-                    System.out.print("Enter where to copy from(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to copy from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (from.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
                         break;
                     }
 
-                    System.out.print("Enter where to copy(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to copy(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (to.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
@@ -100,21 +100,21 @@ public class MainTask2 {
                     System.out.println("---------------------------------------------------------");
                     break;
                 case "move":
-                    System.out.print("Enter where to move from(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to move from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (from.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
                         break;
                     }
 
-                    System.out.print("Enter where to move(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to move(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (to.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
                         break;
                     }
 
-                    System.out.print("Enter regular expression:");
+                    System.out.print("Enter regular expression: ");
                     regex = in.nextLine().trim();
                     if (regex.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
@@ -126,14 +126,14 @@ public class MainTask2 {
                     System.out.println("---------------------------------------------------------");
                     break;
                 case "moveAll":
-                    System.out.print("Enter where to move from(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to move from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (from.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
                         break;
                     }
 
-                    System.out.print("Enter where to move(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to move(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (to.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
@@ -145,14 +145,14 @@ public class MainTask2 {
                     System.out.println("---------------------------------------------------------");
                     break;
                 case "getNameFileDirectory":
-                    System.out.print("Enter where to get name file from(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to get name file from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (from.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
                         break;
                     }
 
-                    System.out.print("Enter regular expression:");
+                    System.out.print("Enter regular expression: ");
                     regex = in.nextLine().trim();
                     if (regex.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
@@ -163,7 +163,7 @@ public class MainTask2 {
                     System.out.println("---------------------------------------------------------");
                     break;
                 case "getAllNameFileDirectory":
-                    System.out.print("Enter where to get name file from(Example:C:\\Users\\123>):");
+                    System.out.print("Enter where to get name file from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (from.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
@@ -174,7 +174,7 @@ public class MainTask2 {
                     System.out.println("---------------------------------------------------------");
                     break;
                 case "deleteDirectory":
-                    System.out.print("Enter path to deleteDirectory(Example:C:\\Users\\123>):");
+                    System.out.print("Enter path to deleteDirectory(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim(), nameMethod, method);
                     if (from.equalsIgnoreCase("return")) {
                         System.out.println("---------------------------------------------------------");
