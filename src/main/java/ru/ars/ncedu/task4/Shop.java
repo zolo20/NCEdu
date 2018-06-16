@@ -33,6 +33,7 @@ public class Shop {
     public void setName(String name) {
         this.name = name;
     }
+
     public List<Products> getProduct_id() {
         return product_id;
     }

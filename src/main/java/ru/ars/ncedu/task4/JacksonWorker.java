@@ -1,14 +1,14 @@
 package ru.ars.ncedu.task4;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import java.io.*;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.*;
-import java.lang.reflect.Type;
+public class JacksonWorker {
 
-public class GsonWorker {
     public static <T> void serializable(T nameClass, String jsonNameFile) {
         if (nameClass == null || jsonNameFile == null) {
             throw new NullPointerException();
@@ -19,14 +19,16 @@ public class GsonWorker {
 
         String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
                 + File.separator + jsonNameFile;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try (Writer writer = new FileWriter(pathResources)) {
-            gson.toJson(nameClass, writer);
+            objectMapper.writeValue(writer, nameClass);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> T deserializable(T nameClass, String jsonNameFile) {
         if (nameClass == null || jsonNameFile == null) {
             throw new NullPointerException();
@@ -37,11 +39,10 @@ public class GsonWorker {
 
         String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
                 + File.separator + jsonNameFile;
-        Gson gson = new GsonBuilder().create();
+        ObjectMapper objectMapper = new ObjectMapper();
         T nameClazz = null;
         try (Reader reader = new FileReader(pathResources)) {
-            nameClazz = gson.fromJson(reader, (Type) nameClass.getClass());
-
+            nameClazz = (T) objectMapper.readValue(reader, nameClass.getClass());
         } catch (IOException e) {
             e.printStackTrace();
         }

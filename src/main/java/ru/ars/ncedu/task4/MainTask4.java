@@ -1,6 +1,5 @@
 package ru.ars.ncedu.task4;
 
-import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBException;
 
 public class MainTask4 {
@@ -32,8 +31,11 @@ public class MainTask4 {
             shop.getProduct_id().add(products);
         }
 
+        JacksonWorker.serializable(shops, "Jackson.json");
+        System.out.println("Jackson " + JacksonWorker.deserializable(shops, "Jackson.json"));
+
         GsonWorker.serializable(shops, "Gson.json");
-        System.out.println(GsonWorker.deserializable(shops, "Gson.json"));
+        System.out.println("Gson " + GsonWorker.deserializable(shops, "Gson.json"));
 
         try {
             JaxbWorker.serializable(shops, "Jaxb.xml");
