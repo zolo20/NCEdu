@@ -3,14 +3,21 @@ package ru.ars.ncedu.task4;
 import javax.xml.bind.*;
 
 import java.io.File;
+import java.lang.reflect.Type;
 
 import static java.util.Objects.requireNonNull;
 
 public class JaxbWorker {
 
-    public static<T> void serializable(T nameClass) throws JAXBException {
+    public static<T> void serializable(T nameClass, String xmlNameFile) throws JAXBException {
+        if (nameClass == null || xmlNameFile == null){
+            throw new NullPointerException();
+        }
+        if (!xmlNameFile.contains(".xml")){
+            throw new IllegalArgumentException();
+        }
         String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
-                + File.separator + "JAXB.xml";
+                + File.separator + xmlNameFile;
         JAXBContext context = JAXBContext.newInstance(nameClass.getClass());
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -18,14 +25,18 @@ public class JaxbWorker {
     }
 
     @SuppressWarnings("unchecked")
-    public static<T> T deserializable(T nameClass) throws JAXBException {
+    public static<T> T deserializable(T nameClass, String xmlNameFile) throws JAXBException {
+        if (nameClass == null || xmlNameFile == null){
+            throw new NullPointerException();
+        }
+        if (!xmlNameFile.contains(".xml")){
+            throw new IllegalArgumentException();
+        }
             String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
-                    + File.separator + "JAXB.xml";
+                    + File.separator + xmlNameFile;
             JAXBContext context = JAXBContext.newInstance(nameClass.getClass());
 
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            T nameClazz = (T) unmarshaller.unmarshal(new File(pathResources));
-            return nameClass;
-
+        return (T) unmarshaller.unmarshal(new File(pathResources));
     }
 }

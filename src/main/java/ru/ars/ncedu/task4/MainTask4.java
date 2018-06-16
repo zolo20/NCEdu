@@ -31,9 +31,13 @@ public class MainTask4 {
             products.setDate_of_manufacture("25.10.2016");
             shop.getProduct_id().add(products);
         }
+
+        GsonWorker.serializable(shops, "Gson.json");
+        System.out.println(GsonWorker.deserializable(shops, "Gson.json"));
+
         try {
-            JaxbWorker.serializable(shops);
-            System.out.println(JaxbWorker.deserializable(shops));
+            JaxbWorker.serializable(shops, "Jaxb.xml");
+            System.out.println(JaxbWorker.deserializable(shops, "Jaxb.xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
