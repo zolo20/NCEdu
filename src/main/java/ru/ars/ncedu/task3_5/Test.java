@@ -8,7 +8,7 @@ public class Test {
         map.put("1", "1.1");
         map.put("2", "1.2");
 
-        for (Map.Entry<String, String> elem: map.entrySet()) {
+        for (Map.Entry<String, String> elem : map.entrySet()) {
             System.out.println(elem.getKey() + elem.getValue());
         }
         List<String> dogsName = new ArrayList<>(Arrays.asList("ss", "aa", "bb"));
@@ -17,7 +17,7 @@ public class Test {
 
         System.out.println(numberUniqueNames(pets));
 
-        Integer[] array1 = {1,1,2, 2, 3, 3, 4, 8, 9, 10};
+        Integer[] array1 = {1, 1, 2, 2, 3, 3, 4, 8, 9, 10};
         Integer[] array2 = {1, 3, 4, 5, 6, 7, 10};
         System.out.println(Arrays.toString(arrUnique(array1, array2)));
     }
@@ -37,14 +37,14 @@ public class Test {
                         if (j == array1.length - 1) {
                             set.add(array2[i - 1]);
                         }
-                        if (i == array2.length-1){
-                            if (array2[i].equals(array1[0])){
+                        if (i == array2.length - 1) {
+                            if (array2[i].equals(array1[0])) {
                                 if (!array1[0].equals(array1[1])) {
                                     set.add(array2[i]);
                                     break;
                                 }
-                            }else if (array2[i].equals(array1[j])) {
-                                if (j != array1.length - 1){
+                            } else if (array2[i].equals(array1[j])) {
+                                if (j != array1.length - 1) {
                                     if (!array1[j].equals(array1[j + 1])) {
                                         set.add(array2[i]);
                                     }
