@@ -15,8 +15,9 @@ public class JaxbWorker {
         if (!xmlNameFile.contains(".xml")) {
             throw new IllegalArgumentException();
         }
-        String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
-                + File.separator + xmlNameFile;
+
+        String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile() +
+                File.separator + xmlNameFile;
         JAXBContext context = JAXBContext.newInstance(nameClass.getClass());
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -31,8 +32,9 @@ public class JaxbWorker {
         if (!xmlNameFile.contains(".xml")) {
             throw new IllegalArgumentException();
         }
-        String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
-                + File.separator + xmlNameFile;
+
+        String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile() +
+                File.separator + xmlNameFile;
         JAXBContext context = JAXBContext.newInstance(nameClass.getClass());
 
         Unmarshaller unmarshaller = context.createUnmarshaller();
