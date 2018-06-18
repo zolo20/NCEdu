@@ -1,4 +1,4 @@
-package ru.ars.ncedu.task4;
+package ru.ars.ncedu.task4.table;
 
 import javax.xml.bind.annotation.*;
 import java.text.ParseException;

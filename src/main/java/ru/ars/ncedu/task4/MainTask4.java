@@ -1,5 +1,8 @@
 package ru.ars.ncedu.task4;
 
+import ru.ars.ncedu.task4.table.*;
+
+
 import javax.xml.bind.JAXBException;
 
 public class MainTask4 {
