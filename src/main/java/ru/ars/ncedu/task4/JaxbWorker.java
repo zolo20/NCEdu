@@ -21,7 +21,7 @@ public class JaxbWorker {
         JAXBContext context = JAXBContext.newInstance(nameClass.getClass());
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        JAXB.marshal(nameClass, new File(pathResources));
+        marshaller.marshal(nameClass, new File(pathResources));
     }
 
     @SuppressWarnings("unchecked")
