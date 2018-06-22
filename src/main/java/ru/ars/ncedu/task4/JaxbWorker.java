@@ -24,20 +24,16 @@ public class JaxbWorker {
         marshaller.marshal(nameClass, new File(pathResources));
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T> T deserializable(T nameClass, String xmlNameFile) throws JAXBException {
-        if (nameClass == null || xmlNameFile == null) {
+    public static <T> T deserializable(Class<T> clazz, String xmlNameFile) {
+        if (clazz == null || xmlNameFile == null) {
             throw new NullPointerException();
         }
         if (!xmlNameFile.contains(".xml")) {
             throw new IllegalArgumentException();
         }
 
-        String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile() +
+        String pathResources = requireNonNull(clazz.getClassLoader().getResource("")).getFile() +
                 File.separator + xmlNameFile;
-        JAXBContext context = JAXBContext.newInstance(nameClass.getClass());
-
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        return (T) unmarshaller.unmarshal(new File(pathResources));
+        return JAXB.unmarshal(new File(pathResources), clazz);
     }
 }

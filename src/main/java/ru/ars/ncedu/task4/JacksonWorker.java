@@ -28,21 +28,20 @@ public class JacksonWorker {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T> T deserializable(T nameClass, String jsonNameFile) {
-        if (nameClass == null || jsonNameFile == null) {
+    public static <T> T deserializable(Class<T> clazz, String jsonNameFile) {
+        if (clazz == null || jsonNameFile == null) {
             throw new NullPointerException();
         }
         if (!jsonNameFile.contains(".json")) {
             throw new IllegalArgumentException();
         }
 
-        String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
+        String pathResources = requireNonNull(clazz.getClassLoader().getResource("")).getFile()
                 + File.separator + jsonNameFile;
         ObjectMapper objectMapper = new ObjectMapper();
         T nameClazz = null;
         try (Reader reader = new FileReader(pathResources)) {
-            nameClazz = (T) objectMapper.readValue(reader, nameClass.getClass());
+            nameClazz = objectMapper.readValue(reader, clazz);
         } catch (IOException e) {
             e.printStackTrace();
         }

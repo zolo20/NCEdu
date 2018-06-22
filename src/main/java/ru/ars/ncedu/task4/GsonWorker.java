@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder;
 import static java.util.Objects.requireNonNull;
 
 import java.io.*;
-import java.lang.reflect.Type;
 
 public class GsonWorker {
     public static <T> void serializable(T nameClass, String jsonNameFile) {
@@ -27,20 +26,20 @@ public class GsonWorker {
         }
     }
 
-    public static <T> T deserializable(T nameClass, String jsonNameFile) {
-        if (nameClass == null || jsonNameFile == null) {
+    public static <T> T deserializable(Class<T> clazz, String jsonNameFile) {
+        if (clazz == null || jsonNameFile == null) {
             throw new NullPointerException();
         }
         if (!jsonNameFile.contains(".json")) {
             throw new IllegalArgumentException();
         }
 
-        String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile()
+        String pathResources = requireNonNull(clazz.getClassLoader().getResource("")).getFile()
                 + File.separator + jsonNameFile;
         Gson gson = new GsonBuilder().create();
         T nameClazz = null;
         try (Reader reader = new FileReader(pathResources)) {
-            nameClazz = gson.fromJson(reader, (Type) nameClass.getClass());
+            nameClazz = gson.fromJson(reader, clazz);
 
         } catch (IOException e) {
             e.printStackTrace();

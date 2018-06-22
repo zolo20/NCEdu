@@ -35,14 +35,14 @@ public class MainTask4 {
         }
 
         JacksonWorker.serializable(shops, "Jackson.json");
-        System.out.println("Jackson " + JacksonWorker.deserializable(shops, "Jackson.json"));
+        System.out.println("Jackson " + JacksonWorker.deserializable(shops.getClass(), "Jackson.json"));
 
         GsonWorker.serializable(shops, "Gson.json");
-        System.out.println("Gson " + GsonWorker.deserializable(shops, "Gson.json"));
+        System.out.println("Gson " + GsonWorker.deserializable(shops.getClass(), "Gson.json"));
 
         try {
             JaxbWorker.serializable(shops, "Jaxb.xml");
-            System.out.println(JaxbWorker.deserializable(shops, "Jaxb.xml"));
+            System.out.println(JaxbWorker.deserializable(shops.getClass(), "Jaxb.xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
