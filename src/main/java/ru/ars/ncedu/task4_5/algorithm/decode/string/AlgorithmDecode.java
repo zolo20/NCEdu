@@ -15,6 +15,7 @@ public class AlgorithmDecode {
         if (!line.contains("[") || !line.contains("]")) {
             return line;
         }
+
         List<Integer> deep = new ArrayList<>(line.length());
         int count = 0;
         for (int i = 0; i < line.toCharArray().length; i++) {
