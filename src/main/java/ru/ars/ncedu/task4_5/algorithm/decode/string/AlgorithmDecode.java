@@ -11,7 +11,7 @@ public class AlgorithmDecode {
         System.out.println(expandExpression(st2));
     }
 
-    static String expandExpression(String line) {
+    public static String expandExpression(String line) {
         if (!line.contains("[") || !line.contains("]")) {
             return line;
         }
@@ -51,12 +51,12 @@ public class AlgorithmDecode {
         return expandExpression(lineBuilder.toString());
     }
 
-    static String charsLine(int index, String line) {
+    private static String charsLine(int index, String line) {
         char[] chars = line.toCharArray();
         return String.valueOf(chars[index]);
     }
 
-    static String repeat(int quantityRepeat, String lineRepeat) {
+    private static String repeat(int quantityRepeat, String lineRepeat) {
         String concatLine = "";
         for (int i = 0; i < quantityRepeat; i++) {
             concatLine += lineRepeat;
