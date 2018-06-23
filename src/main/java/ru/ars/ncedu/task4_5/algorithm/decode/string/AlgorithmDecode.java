@@ -3,7 +3,7 @@ package ru.ars.ncedu.task4_5.algorithm.decode.string;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class AlgorithmDecode {
     public static void main(String[] args) {
         String str = "4[ab]ke2[c]";
         String st2 = "2[ab2[c]]";
