@@ -12,9 +12,6 @@ public class JaxbWorker {
         if (nameClass == null || xmlNameFile == null) {
             throw new NullPointerException();
         }
-        if (!xmlNameFile.contains(".xml")) {
-            throw new IllegalArgumentException();
-        }
 
         String pathResources = requireNonNull(nameClass.getClass().getClassLoader().getResource("")).getFile() +
                 File.separator + xmlNameFile;
@@ -27,9 +24,6 @@ public class JaxbWorker {
     public static <T> T deserializable(Class<T> clazz, String xmlNameFile) {
         if (clazz == null || xmlNameFile == null) {
             throw new NullPointerException();
-        }
-        if (!xmlNameFile.contains(".xml")) {
-            throw new IllegalArgumentException();
         }
 
         String pathResources = requireNonNull(clazz.getClassLoader().getResource("")).getFile() +
