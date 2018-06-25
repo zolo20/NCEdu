@@ -42,7 +42,7 @@ public class MainTask2 {
             }
 
             if (hasEntered == false) {
-                System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
+                System.out.println("No correct method name \"" + nameMethod + "\" \n");
                 System.out.println(DIVIDING_LINE);
             }
         }
@@ -186,7 +186,7 @@ public class MainTask2 {
                     System.out.println(DIVIDING_LINE);
                     break;
                 default:
-                    System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
+                    System.out.println("No correct method name \"" + nameMethod + "\" \n");
                     System.out.println(DIVIDING_LINE);
                     break;
             }
