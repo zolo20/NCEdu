@@ -168,7 +168,7 @@ public class FilesDirectory {
      */
     private static void replacementRequest(File fileSource, File fileTarget, String regex) throws IOException {
         boolean exist = isExists(fileSource, fileTarget);
-        if (exist == true) {
+        if (exist) {
             System.out.println("File " + "\"" + fileSource.getName() + "\"" +
                     " is exists, replace a file?(expected: \"yes\" or \"no\")");
 
