@@ -50,9 +50,7 @@ public class MainTask2 {
 
     private static boolean startMethod(String nameMethod, Method method) {
         Scanner in = new Scanner(System.in);
-        String from;
-        String to;
-        String regex;
+        String from, to, regex;
         System.out.println("In order to return to the selection menu, enter \"return\".");
         try {
             switch (nameMethod) {
