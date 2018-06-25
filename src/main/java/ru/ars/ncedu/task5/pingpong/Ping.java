@@ -15,11 +15,8 @@ public class Ping extends Thread {
         while (true) {
             synchronized (object) {
                 System.out.println("Ping");
-                object.notifyAll();
                 try {
                     object.wait();
-                    TimeUnit.SECONDS.sleep(1);
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

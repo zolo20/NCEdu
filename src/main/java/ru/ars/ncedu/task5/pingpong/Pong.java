@@ -17,8 +17,7 @@ public class Pong extends Thread {
                 System.out.println("Pong");
                 object.notify();
                 try {
-                    object.wait();
-                    TimeUnit.SECONDS.sleep(1);
+                    object.wait(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
