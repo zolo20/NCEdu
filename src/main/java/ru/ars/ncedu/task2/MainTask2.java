@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.Scanner;
 
 public class MainTask2 {
-    private static final String BROKEN_LINE = "---------------------------------------------------------";
+    private static final String DIVIDING_LINE = "---------------------------------------------------------";
 
     public static void main(String... args) {
         while (true) {
@@ -43,7 +43,7 @@ public class MainTask2 {
 
             if (hasEntered == false) {
                 System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
-                System.out.println(BROKEN_LINE);
+                System.out.println(DIVIDING_LINE);
             }
         }
     }
@@ -58,136 +58,136 @@ public class MainTask2 {
                     System.out.print("Enter where to copy from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (from.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.print("Enter where to copy(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (to.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.print("Enter regular expression: ");
                     regex = in.nextLine().trim();
                     if (regex.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     method.invoke(null, from, to, regex);
                     System.out.println("copied");
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
                 case "copyAll":
                     System.out.print("Enter where to copy from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (from.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.print("Enter where to copy(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (to.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     method.invoke(null, from, to);
                     System.out.println("copied");
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
                 case "move":
                     System.out.print("Enter where to move from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (from.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.print("Enter where to move(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (to.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.print("Enter regular expression: ");
                     regex = in.nextLine().trim();
                     if (regex.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     method.invoke(null, from, to, regex);
                     System.out.println("moved");
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
                 case "moveAll":
                     System.out.print("Enter where to move from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (from.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.print("Enter where to move(Example:C:\\Users\\123>): ");
                     to = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (to.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     method.invoke(null, from, to);
                     System.out.println("moved");
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
                 case "getNameFileDirectory":
                     System.out.print("Enter where to get name file from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (from.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.print("Enter regular expression: ");
                     regex = in.nextLine().trim();
                     if (regex.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.println(method.invoke(null, from, regex));
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
                 case "getAllNameFileDirectory":
                     System.out.print("Enter where to get name file from(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (from.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     System.out.println(method.invoke(null, from));
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
                 case "deleteDirectory":
                     System.out.print("Enter path to deleteDirectory(Example:C:\\Users\\123>): ");
                     from = checkerIsNotExistDirectory(in.nextLine().trim());
                     if (from.equalsIgnoreCase("return")) {
-                        System.out.println(BROKEN_LINE);
+                        System.out.println(DIVIDING_LINE);
                         break;
                     }
 
                     method.invoke(null, from);
                     System.out.println("deleted" + "\n");
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
                 default:
                     System.out.println("No correct method name " + "\"" + nameMethod + "\"" + "\n");
-                    System.out.println(BROKEN_LINE);
+                    System.out.println(DIVIDING_LINE);
                     break;
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
