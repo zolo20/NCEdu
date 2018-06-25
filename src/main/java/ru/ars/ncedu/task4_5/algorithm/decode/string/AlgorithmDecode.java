@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AlgorithmDecode {
     public static void main(String[] args) {
-        String str = "4[ab]ke2[c]]";
+        String str = "4[ab]ke2[c]";
         String st2 = "2[ab2[c]]";
         System.out.println(expandExpression(str));
         System.out.println(expandExpression(st2));
