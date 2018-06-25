@@ -1,7 +1,5 @@
 package ru.ars.ncedu.task5.pingpong;
 
-import java.util.concurrent.TimeUnit;
-
 public class Pong extends Thread {
 
     final Object object;
