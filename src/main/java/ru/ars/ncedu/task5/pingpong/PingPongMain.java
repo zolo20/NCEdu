@@ -15,9 +15,11 @@ public class PingPongMain {
 
             Thread pong = new Thread(() -> {
                if (!ping.isAlive()) {
-                   state = "Pong";
-                   System.out.println(2+state);
-                   System.out.println("-------");
+                   if (state.equals("Ping")) {
+                       state = "Pong";
+                       System.out.println(2 + state);
+                       System.out.println("-------");
+                   }
                }
             });
             ping.start();
