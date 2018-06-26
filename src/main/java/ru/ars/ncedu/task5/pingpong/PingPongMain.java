@@ -16,7 +16,6 @@ public class PingPongMain {
                         e.printStackTrace();
                     }
                     monitor.notify();
-
                 }
             });
 
