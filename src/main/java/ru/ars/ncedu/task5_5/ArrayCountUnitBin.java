@@ -10,8 +10,8 @@ public class ArrayCountUnitBin {
             if (i == 0) {
                 arr[i] = 1;
             } else {
-                int div = arr[i]/2;
-                int mod = arr[i]%2;
+                int div = arr[i] / 2;
+                int mod = arr[i] % 2;
                 if (mod == 1) count++;
                 arr[i] = arr[div - 1] + count;
             }
