@@ -4,22 +4,16 @@ import java.util.*;
 
 public class FindDuplicate {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>(Arrays.asList(3, 4, 4, 6, 2, 4));
-        Integer value = null;
-        int index = 0;
-        int indexDup = 0;
-        while (indexDup < list.size()) {
-            if (list.size() != 1 && indexDup == list.size() - 1) {
-                index++;
-                indexDup = index;
-            }
-            indexDup++;
-
-            if (indexDup != list.size() && list.get(index).equals(list.get(indexDup))) {
-                value = list.get(index);
+        List<Integer> list = new ArrayList<>(Arrays.asList(2, 0, 4, 3, 1, 5));
+        int val = -1;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(Math.abs(list.get(i))) >= 0) {
+                list.set(Math.abs(list.get(i)), -list.get(Math.abs(list.get(i))));
+            } else {
+                val = Math.abs(list.get(i));
                 break;
             }
         }
-        System.out.println(value);
+        System.out.println(val);
     }
 }
