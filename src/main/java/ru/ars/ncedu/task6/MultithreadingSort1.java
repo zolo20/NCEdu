@@ -7,23 +7,18 @@ import java.util.concurrent.TimeUnit;
 
 public class MultithreadingSort1 implements Runnable {
     private BlockingQueue<Integer[]> queue;
-    private int secondSleep;
 
-    public MultithreadingSort1(BlockingQueue<Integer[]> queue, int secondSleep) {
+    public MultithreadingSort1(BlockingQueue<Integer[]> queue) {
         this.queue = queue;
-        this.secondSleep = secondSleep;
     }
 
     @Override
     public void run() {
-        while (true) {
-            try {
-                QuickSort.sort(queue.take());
-                System.out.println("Complected");
-                TimeUnit.SECONDS.sleep(secondSleep);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            QuickSort.sort(queue.take());
+            System.out.println("Complected");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
