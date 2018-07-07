@@ -1,6 +1,5 @@
 package ru.ars.ncedu.task6_5;
 
-import java.util.Arrays;
 
 public class WeightLess {
     public static void main(String[] args) {
