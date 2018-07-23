@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.ars.ncedu.task7.chat.users.User;
+import ru.ars.ncedu.task7.exeception.UserExistException;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;

@@ -1,4 +1,4 @@
-package ru.ars.ncedu.task7.gui;
+package ru.ars.ncedu.task7.exeception;
 
 public class UserExistException extends Exception{
 

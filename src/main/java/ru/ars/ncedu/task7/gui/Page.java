@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ru.ars.ncedu.task7.chat.users.User;
+import ru.ars.ncedu.task7.exeception.UserExistException;
 
 
 public class Page extends Application {
