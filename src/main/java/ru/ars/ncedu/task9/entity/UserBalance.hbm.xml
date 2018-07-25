@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.ars.ncedu.task9.entity.UserBalance" table="user_balance" schema="public" catalog="userdata">
+        <id name="login">
+            <column name="login" sql-type="varchar"/>
+        </id>
+        <property name="balance">
+            <column name="balance" sql-type="numeric(64,2)" precision="64" scale="2"/>
+        </property>
+        <one-to-one name="userDateByLogin" class="ru.ars.ncedu.task9.entity.UserDate"/>
+    </class>
+</hibernate-mapping>
