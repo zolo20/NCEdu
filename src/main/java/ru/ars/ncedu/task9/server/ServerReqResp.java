@@ -80,14 +80,15 @@ public class ServerReqResp extends HttpServlet {
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-        if (request.getBalance() == null || request.getLogin().equals("")) {
+        if (request.getBalance() == null || request.getLogin().equals("")
+                || request.getLogin().equals("undefined")) {
             response.setCode(4);
             marshaller.marshal(response, printWriter);
         } else if (!HelperDB.checkLogin(request.getLogin())) {
-            response.setCode(0);
-            response.setBalance(HelperDB.getPrevBalance(request.getLogin()));
-            marshaller.marshal(response, printWriter);
             HelperDB.updateBalance(request.getLogin(), request.getBalance());
+            response.setCode(0);
+            response.setBalance(HelperDB.getBalanceDB(request.getLogin()));
+            marshaller.marshal(response, printWriter);
         } else if (HelperDB.checkLogin(request.getLogin())) {
             response.setCode(1);
             marshaller.marshal(response, printWriter);
@@ -117,7 +118,7 @@ public class ServerReqResp extends HttpServlet {
         } else if (!HelperDB.checkLogin(request.getLogin()) &&
                 HelperDB.correctPassword(request.getLogin(), Crypto.encode(request.getPassword()))) {
             response.setCode(0);
-            response.setBalance(HelperDB.getPrevBalance(request.getLogin()));
+            response.setBalance(HelperDB.getBalanceDB(request.getLogin()));
             marshaller.marshal(response, printWriter);
         } else {
             response.setCode(4);

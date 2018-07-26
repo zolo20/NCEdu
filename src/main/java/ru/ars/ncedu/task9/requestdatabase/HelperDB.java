@@ -35,9 +35,7 @@ public class HelperDB {
         try (Session session = SessionHibernate.getSessionFactory().openSession()) {
             session.beginTransaction();
             Query query = session.createQuery(
-                    "update UserBalance ub " +
-                    "set ub.balance = :newBalance " +
-                    "where ub.login = :oldLogin"
+                    "update UserBalance ub set ub.balance = :newBalance where ub.login = :oldLogin"
             );
             query.setParameter("newBalance", balance);
             query.setParameter("oldLogin", login);
@@ -47,7 +45,7 @@ public class HelperDB {
         }
     }
 
-    public static BigDecimal getPrevBalance(String login) {
+    public static BigDecimal getBalanceDB(String login) {
         BigDecimal prevBalance;
         try (Session session = SessionHibernate.getSessionFactory().openSession()) {
             session.beginTransaction();
@@ -63,7 +61,7 @@ public class HelperDB {
         boolean isCorrect;
         try (Session session = SessionHibernate.getSessionFactory().openSession()) {
             session.beginTransaction();
-            Query query = session.createQuery("SELECT ub.balance FROM UserBalance ub WHERE ub.login = :login");
+            Query query = session.createQuery("SELECT ud.password FROM UserDate ud WHERE ud.login = :login");
             query.setParameter("login", login);
             session.getTransaction().commit();
             isCorrect = query.list().get(0).equals(password);
