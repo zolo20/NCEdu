@@ -22,8 +22,8 @@ public class Server {
     }
 
     public void startServer() {
-        try(Selector selector = Selector.open();
-            ServerSocketChannel server = ServerSocketChannel.open()) {
+        try (Selector selector = Selector.open();
+             ServerSocketChannel server = ServerSocketChannel.open()) {
             ObjectMapper objectMapper = new ObjectMapper();
             User user = null;
             server.configureBlocking(false);
@@ -44,7 +44,7 @@ public class Server {
                         channel.register(selector, SelectionKey.OP_WRITE);
                         channel.read(buffer);
                         String hasExit = new String(buffer[0].array()).trim();
-                        if (hasExit.equals("exit")){
+                        if (hasExit.equals("exit")) {
                             users.remove(user.getNickname());
                             channel.close();
                         } else {
@@ -93,13 +93,11 @@ public class Server {
                     buffer[0] = ByteBuffer.wrap(objectMapper.writeValueAsBytes(user.getNickname() + ": " + user.getMassage()));
                     ByteBuffer finalBuffer = buffer[0];
                     users.forEach((nickname, chan) -> {
-                        if (!nickname.equals(user.getNickname())) {
-                            try {
-                                chan.write(finalBuffer);
-                                finalBuffer.clear();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                        try {
+                            chan.write(finalBuffer);
+                            finalBuffer.clear();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     });
                 } else {

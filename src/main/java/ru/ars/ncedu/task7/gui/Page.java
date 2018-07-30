@@ -37,18 +37,21 @@ public class Page extends Application {
         join.setText("Войти");
 
         join.setOnAction(event -> {
+            join.setDisable(true);
             User user = new User();
             user.setNickname(login.getText());
-            if (!user.getNickname().equals("") && user.getNickname() != null) {
+            if (!user.getNickname().equals("") && login.getText().matches("^[A-Za-z0-9_-]{3,16}$")) {
                 new Thread(() -> {
                     try {
                         new Client("localhost", 8080).startClient(user, stage, msgTo, readMsg, msg, send, sceneChat);
                     } catch (UserExistException e) {
                         Platform.runLater(() -> FxDialogs.showInformation("info", "Имя существует"));
+                        join.setDisable(false);
                     }
                 }).start();
             } else {
-                FxDialogs.showInformation("info", "Введите имя");
+                FxDialogs.showInformation("info", "Некорректное имя");
+                join.setDisable(false);
             }
         });
 

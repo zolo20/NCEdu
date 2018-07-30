@@ -31,8 +31,8 @@ public class Client extends Page {
 
     public void startClient(User user, Stage stage, TextField msgTo, TextArea readMsg,
                             TextArea msg, Button send, Scene sceneChat) throws UserExistException {
-        try(SocketChannel client = SocketChannel.open();
-            Selector selector = Selector.open()) {
+        try (SocketChannel client = SocketChannel.open();
+             Selector selector = Selector.open()) {
             ObjectMapper objectMapper = new ObjectMapper();
             client.configureBlocking(false);
             client.connect(hostAddress);
@@ -56,11 +56,9 @@ public class Client extends Page {
                         }
                     }));
 
-                    Platform.runLater(() ->stage.setOnCloseRequest(event -> {
+                    Platform.runLater(() -> stage.setOnCloseRequest(event -> {
                         try {
                             SocketChannel channel = (SocketChannel) key.channel();
-                            channel.configureBlocking(false);
-                            channel.register(selector, SelectionKey.OP_CONNECT);
                             channel.write(ByteBuffer.wrap("exit".getBytes()));
                             System.exit(0);
                         } catch (IOException e) {
@@ -81,8 +79,10 @@ public class Client extends Page {
         channel.register(selector, SelectionKey.OP_READ);
         System.out.println("Connection established: " + channel.getRemoteAddress() + "\n");
         while (!channel.finishConnect()) ;
+
         buffer[0] = ByteBuffer.wrap(objectMapper.writeValueAsBytes(user));
         channel.write(buffer[0]);
+        buffer[0].clear();
     }
 
     private static void read(SelectionKey key, Selector selector, ObjectMapper objectMapper,
@@ -95,6 +95,7 @@ public class Client extends Page {
         if (user.getTo() == null && user.getMassage() == null) {
             boolean existLogin = Boolean.valueOf(new String(buffer[0].array()).trim());
             if (existLogin) {
+                channel.write(ByteBuffer.wrap("exit".getBytes()));
                 throw new UserExistException();
             } else {
                 Platform.runLater(() -> stage.setScene(sceneChat));
@@ -120,9 +121,9 @@ public class Client extends Page {
         SocketChannel channel = (SocketChannel) key.channel();
         channel.configureBlocking(false);
         channel.register(selector, SelectionKey.OP_READ);
-        if ((msgTo.getText() != null && msgTo.getText().equals(""))) {
-            FxDialogs.showInformation("info", "Ввдите кому отправить");
-        } else if (msg.getText() != null && msg.getText().equals("")) {
+        if (!msgTo.getText().matches("^[A-Za-z0-9_-]{3,16}$")) {
+            FxDialogs.showInformation("info", "Некорректный адрес сообщения");
+        } else if (msg.getText().replaceAll(" ","").equals("")) {
             FxDialogs.showInformation("info", "Введите сообщение");
         } else {
             user.setTo(msgTo.getText());
